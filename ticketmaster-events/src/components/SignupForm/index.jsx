@@ -1,57 +1,60 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const SignupForm = () => {
-    const [name, setName] = useState('');
+    const { register, handleSubmit } = useForm('')
+
+   /*  const [name, setName] = useState('');
     const [age, setAge] = useState('');
     const [address, setAdress] = useState('');
     const [zipcode, setZipcode] = useState('');
-    const [phone, setPhone] = useState('');
+    const [phone, setPhone] = useState(''); Queda comentado por la implementación del react-hook-form*/
 
     const handleClearClick =() =>{
-        setName('');
+      /*   setName('');
         setAge('');
         setAdress('');
         setZipcode('');
-        setPhone('');
+        setPhone(''); */
 
     };
 
-    const handleSubmitForm =(evt) =>{
-        evt.preventDefault();
-        console.log('submit:',{
+    const handleSubmitForm =(data) =>{
+      console.log(data);
+    /*     console.log('submit:',{
             name,
             age,
             address,
             zipcode,
             phone,
-        });
-    };
+        });*/
+    }; 
 
    return (
-        <form onSubmit={handleSubmitForm}>
+        <form onSubmit={handleSubmit(handleSubmitForm)}>
             <label>
                 Name
-                <input value={name} onChange={(evt) => setName(evt.target.value)} required />
+                <input {...register('name')} required />
             </label>
             <br />
             <label>
                 Age
-                <input value={age} onChange={(evt) => setAge(evt.target.value)}required  />
+                <input {...register('age')}required  />
             </label>
             <br />
             <label>
                 Address
-                <input value={address} onChange={(evt) => setAdress(evt.target.value)} required />
+                <input{...register('address')} required />
             </label>
             <br />
             <label>
                 Zipcode
-                <input value={zipcode} onChange={(evt) => setZipcode(evt.target.value)} required />
+                <input {...register('zipcode')} required />
             </label>
             <br />
             <label>
                 Phone
-                <input value={phone} onChange={(evt) => setPhone(evt.target.value)} required />
+                <input {...register('phone')} required />
             </label>
             <br />
             <div>
